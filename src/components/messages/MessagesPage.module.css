@@ -1,0 +1,10 @@
+.MessagesPageWrapper{
+    display: flex;
+    column-gap: 30px;
+}
+
+.messagesColumn{
+    display: flex;
+    flex-direction: column;
+
+}

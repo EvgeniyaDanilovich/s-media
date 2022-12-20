@@ -1,0 +1,25 @@
+.postsWrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.post{
+    position: relative;
+    display: flex;
+    /*align-items: center;*/
+    margin: 0px 0px 30px 0px;
+    min-height: 50px;
+    padding: 0px 0px 0px 70px;
+}
+
+.message::before{
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #61DAFB;
+}
+
