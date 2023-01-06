@@ -1,7 +1,9 @@
-const ADD_MESSAGE = 'ADD-MESSAGE';
+import { AddMessageAction, MessageInitState } from '../models/types-red';
 
-const initialState = {
-    messagesJson: [
+export const ADD_MESSAGE = 'ADD-MESSAGE';
+
+const initialState: MessageInitState = {
+    messages: [
         {
             id: 1,
             message: 'Hello'
@@ -17,7 +19,7 @@ const initialState = {
     ]
 };
 
-export const messageReducer = (state = initialState, action) => {
+export const messageReducer = (state = initialState, action): MessageInitState => {
     switch (action.type) {
         case ADD_MESSAGE:
             const messageItem = {
@@ -26,7 +28,7 @@ export const messageReducer = (state = initialState, action) => {
             };
             return {
                 ...state,
-                messagesJson: [...state.messagesJson, messageItem],
+                messages: [...state.messages, messageItem],
             };
 
         default:
@@ -34,4 +36,4 @@ export const messageReducer = (state = initialState, action) => {
     }
 };
 
-export const addMessage = (message) => ({ type: ADD_MESSAGE, message });
+export const addMessage = (message: string): AddMessageAction => ({ type: ADD_MESSAGE, message });
