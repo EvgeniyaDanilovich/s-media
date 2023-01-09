@@ -3,8 +3,9 @@ import styles from './usersList/Users.module.css';
 import UsersList from './usersList/UsersList';
 import Preloader from '../common/preloader/Preloader';
 import Pagination from '../common/pagination/Pagination';
+import { UsersProps } from '../../models/types-components';
 
-const Users = ({
+const Users: React.FC<UsersProps> = ({
                    users,
                    pageSize,
                    totalUsersCount,
@@ -14,7 +15,7 @@ const Users = ({
                    followUserThunkCreator,
                    unFollowUserThunkCreator,
                    onPageChanged
-               }) => {
+               }: UsersProps) => {
 
     return (
         <div className="container">

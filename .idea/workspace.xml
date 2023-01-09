@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8391b2be-7930-417d-95c4-be512171d56a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/models/interfaces.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/types-components.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/types-red.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/redux.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/app-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/app-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/auth-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/auth-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/main-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/main-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/message-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/message-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/users-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/users-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/pagination/Pagination.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/pagination/Pagination.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mainPage/profileInfo/profileStatus/ProfileStatus.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainPage/profileInfo/profileStatus/ProfileStatus.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/usersPage/Users.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/usersPage/Users.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/usersPage/UsersPageContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/usersPage/UsersPageContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/types-components.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/types-components.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/redux-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/redux-store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/users-selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/users-selectors.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +68,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672849821756</updated>
-      <workItem from="1672849826096" duration="14232000" />
+      <workItem from="1672849826096" duration="21258000" />
     </task>
     <servers />
   </component>

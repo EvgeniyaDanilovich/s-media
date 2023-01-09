@@ -3,9 +3,39 @@ import { connect } from 'react-redux';
 import { followUserThunkCreator, getUsersThunkCreator, unFollowUserThunkCreator } from '../../state/users-reducer';
 import Users from './Users';
 import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from '../../state/users-selectors';
+import { User } from '../../models/types-red';
+import { AppStateType } from '../../state/redux-store';
 
-class UsersAPIComponent extends React.Component {
-    constructor(props) {
+// export type UsersAPIComponentProps = {
+//     users: User[],
+//     currentPage: number,
+//     pageSize: number,
+//     totalUsersCount: number,
+//     isFetching: boolean,
+//     followingInProgress: number[],
+//     getUsersThunkCreator: (currentPage:number, pageSize: number) => void,
+//     followUserThunkCreator: (userId: number) => void,
+//     unFollowUserThunkCreator: (userId: number) => number
+// }
+
+export type TMapStateToProps = {
+    users: User[],
+    pageSize: number,
+    totalUsersCount: number,
+    currentPage: number,
+    isFetching: boolean,
+    followingInProgress: number[],
+}
+export type TMapDispatchToProps = {
+    followUserThunkCreator: (userId: number) => void,
+    unFollowUserThunkCreator: (userId: number) => number
+    getUsersThunkCreator: (currentPage:number, pageSize: number) => void,
+}
+
+type UsersAPIComponentProps = TMapStateToProps & TMapDispatchToProps;
+
+class UsersAPIComponent extends React.Component<UsersAPIComponentProps> {
+    constructor(props: UsersAPIComponentProps) {
         super(props);
     }
 
@@ -13,7 +43,7 @@ class UsersAPIComponent extends React.Component {
         this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
     }
 
-    onPageChanged = (page) => {
+    onPageChanged = (page: number) => {
         this.props.getUsersThunkCreator(page, this.props.pageSize);
     };
 
@@ -31,7 +61,7 @@ class UsersAPIComponent extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType): TMapStateToProps => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
@@ -42,6 +72,7 @@ const mapStateToProps = (state) => {
     };
 };
 
+// <TMapStateToProps, TMapDispatchToProps, AppStateType>
 const UsersPageContainer = connect(mapStateToProps, {
     followUserThunkCreator, unFollowUserThunkCreator, getUsersThunkCreator
 })(UsersAPIComponent);
