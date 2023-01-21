@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+// @ts-ignore
 import styles from './Header.module.css';
+import { THeaderProps } from '../../models/types-components';
 
-export const Header = ({userId, login, isAuth, logoutTC}) => {
+export const Header: React.FC<THeaderProps> = ({userId, login, isAuth, logoutTC}) => {
    const  onLogout = () =>{
        logoutTC();
     }

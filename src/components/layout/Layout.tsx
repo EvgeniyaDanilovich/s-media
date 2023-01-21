@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import './Layout.css';
 import HeaderContainer  from '../header/HeaderContainer';
 
-export const Layout = () => {
+export const Layout: React.FC = () => {
     return (
         <>
             <HeaderContainer />

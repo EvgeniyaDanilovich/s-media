@@ -1,13 +1,13 @@
 import { getAuthUserDataTC } from './auth-reducer';
-import { AppInitState, InitializedSuccessAction } from '../models/types-red';
+import { AppInitState, TAppActions, TAppThunk } from '../models/types-red';
 
-export const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
+export const INITIALIZED_SUCCESS = 'APP/INITIALIZED_SUCCESS';
 
 const initialState: AppInitState = {
     initialized: false
 };
 
-export const appReducer = (state: AppInitState = initialState, action): AppInitState => {
+export const appReducer = (state: AppInitState = initialState, action: TAppActions): AppInitState => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
             return {
@@ -20,9 +20,14 @@ export const appReducer = (state: AppInitState = initialState, action): AppInitS
     }
 };
 
-export const initializedSuccess = (): InitializedSuccessAction => ({ type: INITIALIZED_SUCCESS });
+// export const initializedSuccess = (): InitializedSuccessAction => ({ type: INITIALIZED_SUCCESS });
 
-export const initializeApp = () => (dispatch) => {
+export const appActions = {
+    initializedSuccess: () => ({ type: INITIALIZED_SUCCESS } as const)
+}
+
+export const initializeApp = (): TAppThunk => (dispatch) => {
     const promise = dispatch(getAuthUserDataTC());
-    promise.then(() => dispatch(initializedSuccess()));
+    // @ts-ignore
+    promise.then(() => dispatch(appActions.initializedSuccess()));
 };

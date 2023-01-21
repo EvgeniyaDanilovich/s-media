@@ -1,11 +1,13 @@
 import React from 'react';
+// @ts-ignore
 import styles from '../myPosts/MyPosts.module.css';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { TAddPostFormProps, TAddPostFormValue } from '../../../models/types-components';
 
-const AddPostForm = ({ addPost }) => {
-    const { register, handleSubmit, reset, setError, formState: { errors } } = useForm();
+const AddPostForm: React.FC<TAddPostFormProps> = ({ addPost }) => {
+    const { register, handleSubmit, reset, setError, formState: { errors } } = useForm<TAddPostFormValue>();
 
-    const onSubmit = (data) => {
+    const onSubmit: SubmitHandler<TAddPostFormValue> = (data: TAddPostFormValue) => {
         addPost(data.post);
         reset();
     };

@@ -1,12 +1,23 @@
 import React from 'react';
+import { TProfile, TProfileContacts } from '../../../../models/common-types';
 
-const Contact = ({ contactTitle, contactValue }) => {
+export type TContactProps = {
+    contactTitle: string,
+    contactValue: string
+}
+export type TProfileDataProps = {
+    profile: TProfile,
+    isOwner: boolean,
+    goToEditMode: () => void
+}
+
+const Contact: React.FC<TContactProps> = ({ contactTitle, contactValue }) => {
     return (
         <div><span>{contactTitle}</span>: {contactValue}</div>
     );
 };
 
-const ProfileData = ({ profile, isOwner, goToEditMode }) => {
+const ProfileData: React.FC<TProfileDataProps> = ({ profile, isOwner, goToEditMode }) => {
     return (
         <div>
             {isOwner && <div><button onClick={goToEditMode}>Edit</button></div>}
@@ -17,7 +28,7 @@ const ProfileData = ({ profile, isOwner, goToEditMode }) => {
             }
             <div><span>About me: </span>{profile.aboutMe}</div>
             <div><span>Contacts: </span>{Object.keys(profile.contacts).map((key) => {
-                return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />;
+                return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof TProfileContacts]} />;
             })}</div>
         </div>
     );

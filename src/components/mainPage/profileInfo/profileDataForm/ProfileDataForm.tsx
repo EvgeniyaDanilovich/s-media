@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+// @ts-ignore
 import styles from '../../myPosts/MyPosts.module.css';
+import { TProfileDataFormProps, TProfileDataFormValue } from '../../../../models/types-components';
+import { TProfileContacts } from '../../../../models/common-types';
 
-const ProfileDataForm = ({ profile, saveProfile, EditModeOff }) => {
-    const { register, handleSubmit, reset, formState: { errors, isValid } } = useForm({
+
+const ProfileDataForm: React.FC<TProfileDataFormProps> = ({ profile, saveProfile, EditModeOff }) => {
+    const { register, handleSubmit, reset, formState: { errors, isValid } } = useForm<TProfileDataFormValue>({
         defaultValues: {
             fullName: profile.fullName,
             lookingForAJob: profile.lookingForAJob,
@@ -22,10 +26,10 @@ const ProfileDataForm = ({ profile, saveProfile, EditModeOff }) => {
 
     const [ serverErrorMessage, setServerErrorMessage] = useState('');
 
-    const onSubmit = async (data) => {
+    const onSubmit: SubmitHandler<TProfileDataFormValue> = async (data: TProfileDataFormValue) => {
         saveProfile(data).then(() => {
             EditModeOff();
-        }).catch((error) => {
+        }).catch((error: Error) => {
             setServerErrorMessage(`${error}`);
         });
     };
@@ -69,7 +73,9 @@ const ProfileDataForm = ({ profile, saveProfile, EditModeOff }) => {
                     return (
                         <div key={key}>
                             <span>{key}:</span>
-                            <input type={'text'} {...register(`contacts.${key}`)} />
+                            <input type={'text'} {
+                                // @ts-ignore
+                                ...register(`contacts.${key}`)} />
                         </div>);
                 })}
             </div>

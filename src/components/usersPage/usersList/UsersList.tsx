@@ -1,9 +1,11 @@
 import React from 'react';
 import User from './User';
+import { TUserProps, TUsersListProps } from '../../../models/types-components';
 // headers: {
 //     'API_KEY': '2fb5263a-5ecb-4413-a235-0318942ab844'
 // }
-const UsersList = ({ users, followingInProgress, followUserThunkCreator, unFollowUserThunkCreator }) => {
+
+const UsersList: React.FC<TUsersListProps> = ({ users, followingInProgress, followUserThunkCreator, unFollowUserThunkCreator }) => {
     return (
         <div>
             {users.map((user) => (

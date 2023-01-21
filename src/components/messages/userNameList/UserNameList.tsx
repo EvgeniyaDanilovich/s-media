@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+// @ts-ignore
 import styles from './UserNameList.module.css';
+import { TUserNameListProps } from '../../../models/types-components';
 
-const UserNameList = ({ userData }) => {
+const UserNameList: React.FC<TUserNameListProps> = ({ userData }) => {
     return (
         <div className={styles.wrapper}>
             {userData.map((user) => (

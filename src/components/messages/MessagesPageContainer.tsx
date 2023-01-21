@@ -1,18 +1,19 @@
 import React from 'react';
-import { addMessage } from '../../state/message-reducer';
+import {  addMessageTC } from '../../state/message-reducer';
 import MessagesPage from './MessagesPage';
 import { connect } from 'react-redux';
 import { WithAuthNavigate } from '../../hoc/WithAuthNavigate';
 import { compose } from 'redux';
+import { AppStateType } from '../../state/redux-store';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
-        stateMessagesPage: state.messagesPage
+        messages: state.messagesPage.messages
     };
 };
 
-export default compose(
-    connect(mapStateToProps, { addMessage }),
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, { addMessageTC }),
     WithAuthNavigate
 )(MessagesPage);
 

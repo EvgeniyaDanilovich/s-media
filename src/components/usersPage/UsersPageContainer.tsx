@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { followUserThunkCreator, getUsersThunkCreator, unFollowUserThunkCreator } from '../../state/users-reducer';
 import Users from './Users';
 import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from '../../state/users-selectors';
-import { User } from '../../models/types-red';
+import { TUser } from '../../models/common-types';
 import { AppStateType } from '../../state/redux-store';
 
 // export type UsersAPIComponentProps = {
-//     users: User[],
+//     users: TUser[],
 //     currentPage: number,
 //     pageSize: number,
 //     totalUsersCount: number,
@@ -19,7 +19,7 @@ import { AppStateType } from '../../state/redux-store';
 // }
 
 export type TMapStateToProps = {
-    users: User[],
+    users: TUser[],
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,

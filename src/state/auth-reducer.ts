@@ -1,5 +1,7 @@
-import { authAPI, securityAPI } from '../api/Api';
-import { AuthInitState, GetCaptchaUrlSuccessAction, SetAuthUserDataAction, SetServerErrorMessageAction } from '../models/types-red';
+import { AuthInitState, TAuthActions, TAuthThunk } from '../models/types-red';
+import { ResultCodes } from '../enums/enums';
+import { authAPI } from '../api/auth-api';
+import { securityAPI } from '../api/security-api';
 
 export const SET_USER_DATA = 'auth/SET_USER_DATA';
 export const SET_SERVER_ERROR_MESSAGE = 'auth/SET_SERVER_ERROR_MESSAGE';
@@ -14,7 +16,7 @@ const initialState: AuthInitState = {
     captchaUrl: null
 };
 
-export const authReducer = (state = initialState, action): AuthInitState => {
+export const authReducer = (state = initialState, action: TAuthActions): AuthInitState => {
     switch (action.type) {
         case SET_USER_DATA:
             return {
@@ -40,45 +42,54 @@ export const authReducer = (state = initialState, action): AuthInitState => {
     }
 };
 
-export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean): SetAuthUserDataAction => ({
-    type: SET_USER_DATA,
-    payload: { id, email, login, isAuth }
-});
-export const setServerErrorMessage = (message: string): SetServerErrorMessageAction => ({ type: SET_SERVER_ERROR_MESSAGE, message });
-export const getCaptchaUrlSuccess = (captchaUrl: string): GetCaptchaUrlSuccessAction => ({ type: GET_CAPTCHA_URL_SUCCESS, captchaUrl });
+// export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean): SetAuthUserDataAction => ({
+//     type: SET_USER_DATA,
+//     payload: { id, email, login, isAuth }
+// });
+// export const setServerErrorMessage = (message: string): SetServerErrorMessageAction => ({ type: SET_SERVER_ERROR_MESSAGE, message });
+// export const getCaptchaUrlSuccess = (captchaUrl: string): GetCaptchaUrlSuccessAction => ({ type: GET_CAPTCHA_URL_SUCCESS, captchaUrl });
 
-export const getAuthUserDataTC = () => async (dispatch) => {
+export const authActions = {
+    setAuthUserData: (id: number | null, email: string | null, login: string | null, isAuth: boolean) => ({
+        type: SET_USER_DATA,
+        payload: { id, email, login, isAuth }
+    } as const),
+    setServerErrorMessage: (message: string) => ({ type: SET_SERVER_ERROR_MESSAGE, message } as const),
+    getCaptchaUrlSuccess:(captchaUrl: string) => ({ type: GET_CAPTCHA_URL_SUCCESS, captchaUrl } as const)
+}
+
+export const  getAuthUserDataTC = (): TAuthThunk => async (dispatch) => {
     const response = await authAPI.me();
 
-    if (response.data.resultCode === 0) {
+    if (response.data.resultCode === ResultCodes.SUCCESS) {
         const { id, email, login } = response.data.data;
-        dispatch(setAuthUserData(id, email, login, true));
+        dispatch(authActions.setAuthUserData(id, email, login, true));
     }
 };
 
-export const loginTC = (email: string, password: string, rememberMe: boolean, captcha: string) => async (dispatch) => {
+export const loginTC = (email: string, password: string, rememberMe: boolean, captcha: string): TAuthThunk => async (dispatch) => {
     const response = await authAPI.login(email, password, rememberMe, captcha);
 
-    if (response.data.resultCode === 0) {
+    if (response.data.resultCode === ResultCodes.SUCCESS) {
         dispatch(getAuthUserDataTC());
     } else {
-        if (response.data.resultCode === 10) {
+        if (response.data.resultCode === ResultCodes.CAPTCHA_IS_REQUIRED) {
             dispatch(getCaptchaUrlTC());
         }
-        dispatch(setServerErrorMessage(response.data.messages[0]));
+        dispatch(authActions.setServerErrorMessage(response.data.messages[0]));
     }
 };
 
-export const getCaptchaUrlTC = () => async (dispatch) => {
+export const getCaptchaUrlTC = (): TAuthThunk => async (dispatch) => {
     const response = await securityAPI.getCaptchaUrl();
     const captchaUrl = response.data.url;
-    dispatch(getCaptchaUrlSuccess(captchaUrl));
+    dispatch(authActions.getCaptchaUrlSuccess(captchaUrl));
 };
 
-export const logoutTC = () => async (dispatch) => {
+export const logoutTC = (): TAuthThunk => async (dispatch) => {
     const response = await authAPI.logout();
 
-    if (response.data.resultCode === 0) {
-        dispatch(setAuthUserData(null, null, null, false));
+    if (response.data.resultCode === ResultCodes.SUCCESS) {
+        dispatch(authActions.setAuthUserData(null, null, null, false));
     }
 };

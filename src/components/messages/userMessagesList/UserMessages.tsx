@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './UserMessages.module.css';
+import { TUserMessagesProps } from '../../../models/types-components';
 
-const UserMessages = ({ messagesAll }) => {
+const UserMessages: React.FC<TUserMessagesProps> = ({ messagesAll }) => {
     return (
         <div >
             {messagesAll.map((message) => (

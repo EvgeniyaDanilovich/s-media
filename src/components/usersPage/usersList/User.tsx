@@ -1,11 +1,16 @@
 import React from 'react';
+// @ts-ignore
 import styles from './Users.module.css';
+// @ts-ignore
 import userPhoto from '../../../assets/images/garfild.jpg';
 import { NavLink } from 'react-router-dom';
+import { TUser } from '../../../models/common-types';
+import { TUserProps } from '../../../models/types-components';
 // headers: {
 //     'API_KEY': '2fb5263a-5ecb-4413-a235-0318942ab844'
 // }
-const User = ({ user, followingInProgress, followUserThunkCreator, unFollowUserThunkCreator }) => {
+
+const User: React.FC<TUserProps> = ({ user, followingInProgress, followUserThunkCreator, unFollowUserThunkCreator }) => {
     return (
         <div className={styles.userRow}>
             <div>

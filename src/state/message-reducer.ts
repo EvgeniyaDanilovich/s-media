@@ -1,6 +1,6 @@
-import { AddMessageAction, MessageInitState } from '../models/types-red';
+import { MessageInitState, TMessageActions, TMessageThunk } from '../models/types-red';
 
-export const ADD_MESSAGE = 'ADD-MESSAGE';
+export const ADD_MESSAGE = 'message/ADD-MESSAGE';
 
 const initialState: MessageInitState = {
     messages: [
@@ -19,7 +19,7 @@ const initialState: MessageInitState = {
     ]
 };
 
-export const messageReducer = (state = initialState, action): MessageInitState => {
+export const messageReducer = (state = initialState, action: TMessageActions): MessageInitState => {
     switch (action.type) {
         case ADD_MESSAGE:
             const messageItem = {
@@ -36,4 +36,12 @@ export const messageReducer = (state = initialState, action): MessageInitState =
     }
 };
 
-export const addMessage = (message: string): AddMessageAction => ({ type: ADD_MESSAGE, message });
+// export const addMessage = (message: string): AddMessageAction => ({ type: ADD_MESSAGE, message });
+
+export const messageActions = {
+    addMessage: (message: string) => ({ type: ADD_MESSAGE, message } as const)
+}
+
+export const addMessageTC = (message: string): TMessageThunk => (dispatch) => {
+    dispatch(messageActions.addMessage(message));
+}

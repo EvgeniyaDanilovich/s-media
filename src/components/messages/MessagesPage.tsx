@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from 'react';
+// @ts-ignore
 import styles from './MessagesPage.module.css';
 import UserNameList from './userNameList/UserNameList';
 import UserMessages from './userMessagesList/UserMessages';
 import AddMessageForm from './messageForm/AddMessageForm';
 
-const MessagesPage = ({ stateMessagesPage, addMessage }) => {
+export type TMessagesPageProps = {
+    messages:  {
+        id: number,
+        message: string
+    }[],
+    addMessageTC:(messages: string) => void
+}
+
+const MessagesPage: React.FC<TMessagesPageProps> = ({ messages, addMessageTC }) => {
     const [data, setData] = useState([]);
 
     async function getData() {
@@ -30,8 +39,8 @@ const MessagesPage = ({ stateMessagesPage, addMessage }) => {
             <div className={styles.MessagesPageWrapper}>
                 <UserNameList userData={data} />
                 <div className={styles.messagesColumn}>
-                    <UserMessages messagesAll={stateMessagesPage.messagesJson} />
-                    <AddMessageForm addMessage={addMessage}/>
+                    <UserMessages messagesAll={messages} />
+                    <AddMessageForm addMessage={addMessageTC}/>
                 </div>
             </div>
         </div>

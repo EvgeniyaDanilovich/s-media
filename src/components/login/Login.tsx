@@ -1,15 +1,17 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { loginTC } from '../../state/auth-reducer';
+import { AppStateType } from '../../state/redux-store';
+import { TLoginFormProps, TLoginFormValues, TLoginProps, TMapStateToPropsLogin, TUserData } from '../../models/types-components';
 
-const LoginForm = ({ authorizedUserId, serverErrorMessage, captchaUrl, loginTC }) => {
-    const { register, handleSubmit, reset, formState: { errors, isValid } } = useForm({
+const LoginForm: React.FC<TLoginFormProps> = ({ authorizedUserId, serverErrorMessage, captchaUrl, loginTC }: TLoginFormProps) => {
+    const { register, handleSubmit, reset, formState: { errors, isValid } } = useForm<TLoginFormValues>({
         mode: 'onChange'
     });
 
-    const onSubmit = (data) => {
+    const onSubmit: SubmitHandler<TLoginFormValues> = (data: TUserData) => {
         loginTC(data.email, data.password, data.rememberMe, data.captcha);
         reset();
     };
@@ -47,7 +49,7 @@ const LoginForm = ({ authorizedUserId, serverErrorMessage, captchaUrl, loginTC }
     );
 };
 
-const Login = ({ authorizedUserId, isAuth, serverErrorMessage, captchaUrl, loginTC }) => {
+const Login: React.FC<TLoginProps> = ({ authorizedUserId, isAuth, serverErrorMessage, captchaUrl, loginTC }: TLoginProps) => {
     if (isAuth) return <Navigate to={`/main/${authorizedUserId}`} />;
 
     return (
@@ -59,7 +61,7 @@ const Login = ({ authorizedUserId, isAuth, serverErrorMessage, captchaUrl, login
     );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType): TMapStateToPropsLogin => {
     return {
         authorizedUserId: state.auth.id,
         isAuth: state.auth.isAuth,
@@ -68,4 +70,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { loginTC, })(Login);
+export default connect(mapStateToProps, { loginTC })(Login);

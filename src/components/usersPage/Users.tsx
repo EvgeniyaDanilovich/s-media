@@ -1,20 +1,13 @@
 import React from 'react';
-import styles from './usersList/Users.module.css';
 import UsersList from './usersList/UsersList';
+// @ts-ignore
 import Preloader from '../common/preloader/Preloader';
 import Pagination from '../common/pagination/Pagination';
 import { UsersProps } from '../../models/types-components';
 
 const Users: React.FC<UsersProps> = ({
-                   users,
-                   pageSize,
-                   totalUsersCount,
-                   currentPage,
-                   isFetching,
-                   followingInProgress,
-                   followUserThunkCreator,
-                   unFollowUserThunkCreator,
-                   onPageChanged
+                   users, pageSize, totalUsersCount, currentPage, isFetching, followingInProgress,
+                   followUserThunkCreator, unFollowUserThunkCreator, onPageChanged
                }: UsersProps) => {
 
     return (
