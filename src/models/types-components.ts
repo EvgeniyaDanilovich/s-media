@@ -9,15 +9,15 @@ export type PaginationProps = {
 }
 
 export type UsersProps = {
-    users: TUser[],
-    pageSize: number,
-    totalUsersCount: number,
-    currentPage: number,
-    isFetching: boolean,
-    followingInProgress: number[],
-    followUserThunkCreator: (userId: number) => void,
-    unFollowUserThunkCreator: (userId: number) => void,
-    onPageChanged: (page: number) => void
+    // users: TUser[],
+    // pageSize: number,
+    // totalUsersCount: number,
+    // currentPage: number,
+    // isFetching: boolean,
+    // followingInProgress: number[],
+    // followUserThunkCreator: (userId: number) => void,
+    // unFollowUserThunkCreator: (userId: number) => void,
+    // onPageChanged: (page: number) => void
 }
 
 export type TUserProps = {
@@ -144,3 +144,19 @@ export type TUserNameListProps = {
         name: string
     }[]
 }
+
+export type TMapStateToProps = {
+    users: TUser[],
+    pageSize: number,
+    // totalUsersCount: number,
+    currentPage: number,
+    // isFetching: boolean,
+    // followingInProgress: number[],
+}
+export type TMapDispatchToProps = {
+    followUserThunkCreator: (userId: number) => void,
+    unFollowUserThunkCreator: (userId: number) => number
+    getUsersThunkCreator: (currentPage:number, pageSize: number) => void,
+}
+
+export type UsersAPIComponentProps = TMapStateToProps & TMapDispatchToProps;

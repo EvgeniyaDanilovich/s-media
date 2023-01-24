@@ -3,79 +3,54 @@ import { connect } from 'react-redux';
 import { followUserThunkCreator, getUsersThunkCreator, unFollowUserThunkCreator } from '../../state/users-reducer';
 import Users from './Users';
 import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from '../../state/users-selectors';
-import { TUser } from '../../models/common-types';
 import { AppStateType } from '../../state/redux-store';
+import { TMapStateToProps, UsersAPIComponentProps } from '../../models/types-components';
 
-// export type UsersAPIComponentProps = {
-//     users: TUser[],
-//     currentPage: number,
-//     pageSize: number,
-//     totalUsersCount: number,
-//     isFetching: boolean,
-//     followingInProgress: number[],
-//     getUsersThunkCreator: (currentPage:number, pageSize: number) => void,
-//     followUserThunkCreator: (userId: number) => void,
-//     unFollowUserThunkCreator: (userId: number) => number
-// }
 
-export type TMapStateToProps = {
-    users: TUser[],
-    pageSize: number,
-    totalUsersCount: number,
-    currentPage: number,
-    isFetching: boolean,
-    followingInProgress: number[],
-}
-export type TMapDispatchToProps = {
-    followUserThunkCreator: (userId: number) => void,
-    unFollowUserThunkCreator: (userId: number) => number
-    getUsersThunkCreator: (currentPage:number, pageSize: number) => void,
-}
+const UsersPageContainer: React.FC = () => {
 
-type UsersAPIComponentProps = TMapStateToProps & TMapDispatchToProps;
-
-class UsersAPIComponent extends React.Component<UsersAPIComponentProps> {
-    constructor(props: UsersAPIComponentProps) {
-        super(props);
-    }
-
-    componentDidMount() {
-        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
-    }
-
-    onPageChanged = (page: number) => {
-        this.props.getUsersThunkCreator(page, this.props.pageSize);
-    };
-
-    render() {
-        return (<Users users={this.props.users}
-                       pageSize={this.props.pageSize}
-                       totalUsersCount={this.props.totalUsersCount}
-                       currentPage={this.props.currentPage}
-                       isFetching={this.props.isFetching}
-                       followingInProgress={this.props.followingInProgress}
-                       followUserThunkCreator={this.props.followUserThunkCreator}
-                       unFollowUserThunkCreator={this.props.unFollowUserThunkCreator}
-                       onPageChanged={this.onPageChanged}
-        />);
-    }
-}
-
-const mapStateToProps = (state: AppStateType): TMapStateToProps => {
-    return {
-        users: getUsers(state),
-        pageSize: getPageSize(state),
-        totalUsersCount: getTotalUsersCount(state),
-        currentPage: getCurrentPage(state),
-        isFetching: getIsFetching(state),
-        followingInProgress: getFollowingInProgress(state)
-    };
+    return (<Users />);
 };
 
+// class UsersAPIComponent extends React.Component<UsersAPIComponentProps> {
+//     componentDidMount() {
+//         this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
+//     }
+//
+//     // onPageChanged = (page: number) => {
+//     //     this.props.getUsersThunkCreator(page, this.props.pageSize);
+//     // };
+//
+//     render() {
+//         return (<Users
+//             users={this.props.users}
+//             pageSize={this.props.pageSize}
+//             totalUsersCount={this.props.totalUsersCount}
+//             currentPage={this.props.currentPage}
+//             isFetching={this.props.isFetching}
+//                        followingInProgress={this.props.followingInProgress}
+//                        followUserThunkCreator={this.props.followUserThunkCreator}
+//                        unFollowUserThunkCreator={this.props.unFollowUserThunkCreator}
+//             onPageChanged={this.onPageChanged}
+//         />);
+//     }
+// }
+
+// const mapStateToProps = (state: AppStateType): TMapStateToProps => {
+//     return {
+//         users: getUsers(state),
+//         pageSize: getPageSize(state),
+//         totalUsersCount: getTotalUsersCount(state),
+//         currentPage: getCurrentPage(state),
+//         isFetching: getIsFetching(state),
+//         followingInProgress: getFollowingInProgress(state)
+//     };
+// };
+
 // <TMapStateToProps, TMapDispatchToProps, AppStateType>
-const UsersPageContainer = connect(mapStateToProps, {
-    followUserThunkCreator, unFollowUserThunkCreator, getUsersThunkCreator
-})(UsersAPIComponent);
+// const UsersPageContainer = connect(mapStateToProps, {
+//     followUserThunkCreator, unFollowUserThunkCreator, getUsersThunkCreator
+// })(UsersAPIComponent);
 
 export default UsersPageContainer;
 

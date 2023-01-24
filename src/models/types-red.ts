@@ -34,7 +34,7 @@ export type MainInitState = {
     posts: MainInitStatePosts[],
     profile: TProfile | null,
     status: string,
-    newPostText: string
+    newPostText?: string
 }
 
 export type TMainActions = InferActionsTypes<typeof mainActions>

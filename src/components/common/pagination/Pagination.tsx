@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// @ts-ignore
 import styles from './Pagination.module.css';
 import { PaginationProps } from '../../../models/types-components';
 
