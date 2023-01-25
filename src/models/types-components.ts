@@ -38,7 +38,7 @@ export type TLoginFormProps = {
     authorizedUserId: number,
     serverErrorMessage: string,
     captchaUrl: string,
-    loginTC: (email: string, password: string, rememberMe: boolean, captcha: string) => void
+    login: (email: string, password: string, rememberMe: boolean, captcha: string) => void
 }
 
 export type TUserData = {

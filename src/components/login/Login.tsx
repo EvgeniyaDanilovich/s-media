@@ -1,18 +1,20 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { loginTC } from '../../state/auth-reducer';
 import { AppStateType } from '../../state/redux-store';
-import { TLoginFormProps, TLoginFormValues, TLoginProps, TMapStateToPropsLogin, TUserData } from '../../models/types-components';
+import { TLoginFormProps, TLoginFormValues, TUserData } from '../../models/types-components';
 
-const LoginForm: React.FC<TLoginFormProps> = ({ authorizedUserId, serverErrorMessage, captchaUrl, loginTC }: TLoginFormProps) => {
+// authorizedUserId, isAuth, serverErrorMessage, captchaUrl
+
+const LoginForm: React.FC<TLoginFormProps> = ({ authorizedUserId, serverErrorMessage, captchaUrl, login }: TLoginFormProps) => {
     const { register, handleSubmit, reset, formState: { errors, isValid } } = useForm<TLoginFormValues>({
         mode: 'onChange'
     });
 
     const onSubmit: SubmitHandler<TLoginFormValues> = (data: TUserData) => {
-        loginTC(data.email, data.password, data.rememberMe, data.captcha);
+        login(data.email, data.password, data.rememberMe, data.captcha);
         reset();
     };
 
@@ -49,25 +51,28 @@ const LoginForm: React.FC<TLoginFormProps> = ({ authorizedUserId, serverErrorMes
     );
 };
 
-const Login: React.FC<TLoginProps> = ({ authorizedUserId, isAuth, serverErrorMessage, captchaUrl, loginTC }: TLoginProps) => {
+const Login: React.FC = () => {
+    const authorizedUserId = useSelector((state: AppStateType) => state.auth.id);
+    const isAuth = useSelector((state: AppStateType) => state.auth.isAuth);
+    const serverErrorMessage = useSelector((state: AppStateType) => state.auth.serverErrorMessage);
+    const captchaUrl = useSelector((state: AppStateType) => state.auth.captchaUrl);
+
+    const dispatch = useDispatch();
+
+    const login = (email: string, password: string, rememberMe: boolean, captcha: string) => {
+        // @ts-ignore
+        dispatch(loginTC(email, password, rememberMe, captcha))
+    };
+
     if (isAuth) return <Navigate to={`/main/${authorizedUserId}`} />;
 
     return (
         <div className="container">
             <h1>Login</h1>
             <LoginForm authorizedUserId={authorizedUserId} serverErrorMessage={serverErrorMessage}
-                       captchaUrl={captchaUrl} loginTC={loginTC} />
+                       captchaUrl={captchaUrl} login={login} />
         </div>
     );
 };
 
-const mapStateToProps = (state: AppStateType): TMapStateToPropsLogin => {
-    return {
-        authorizedUserId: state.auth.id,
-        isAuth: state.auth.isAuth,
-        serverErrorMessage: state.auth.serverErrorMessage,
-        captchaUrl: state.auth.captchaUrl
-    };
-};
-
-export default connect(mapStateToProps, { loginTC })(Login);
+export default Login;
