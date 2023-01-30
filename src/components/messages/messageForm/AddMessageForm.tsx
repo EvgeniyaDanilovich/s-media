@@ -1,13 +1,6 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-
-export type TAddMessageFormProps = {
-    addMessage: (message: string) => void
-}
-
-export type TMessageFormValues = {
-    message: string
-}
+import { TAddMessageFormProps, TMessageFormValues } from '../../../models/types-components';
 
 const AddMessageForm: React.FC<TAddMessageFormProps> = ({ addMessage }) => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm<TMessageFormValues>();

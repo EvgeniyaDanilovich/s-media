@@ -11,7 +11,8 @@ import Preloader from './components/common/preloader/Preloader';
 import { AppStateType } from './state/redux-store';
 
 const MessagesPageContainer = lazy(() => import('./components/messages/MessagesPageContainer'));
-const UsersPageContainer = lazy(() => import('./components/usersPage/UsersPageContainer'));
+const UsersPage = lazy(() => import('./components/usersPage/UsersPage'));
+const ChatPage = lazy(() => import('./pages/chatPage/ChatPage'));
 
 const App: React.FC = () => {
     const dispatch = useDispatch();
@@ -35,8 +36,9 @@ const App: React.FC = () => {
                             // @ts-ignore
                             <MainPageContainer />} />
                         <Route path="messages/*" element={< MessagesPageContainer />} />
-                        <Route path="users" element={<UsersPageContainer />} />
+                        <Route path="users" element={<UsersPage />} />
                         <Route path="login" element={<Login />} />
+                        <Route path="chat" element={<ChatPage />} />
                     </Route>
                     <Route path="*" element={<div>Not found 404</div>} />
                 </Routes>

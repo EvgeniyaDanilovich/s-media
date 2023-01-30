@@ -28,6 +28,11 @@ export const Header: React.FC<THeaderProps> = ({userId, login, isAuth, logoutTC}
                             className={({ isActive }) => isActive ? `${styles.activeHeaderLink} ${styles.link}`
                                 : styles.link}> Users
                         </NavLink>
+                        <NavLink
+                            to="/chat"
+                            className={({ isActive }) => isActive ? `${styles.activeHeaderLink} ${styles.link}`
+                                : styles.link}> Chat
+                        </NavLink>
                     </nav>
                     <div className={styles.loginBlock}>
                         {isAuth ? <div><div>{login}</div><button onClick={logoutTC}>Log out</button></div>  :

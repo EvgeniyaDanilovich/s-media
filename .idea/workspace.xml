@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8391b2be-7930-417d-95c4-be512171d56a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/usersPage/UserSearchForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/chatPage/ChatPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/usersPage/Users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/usersPage/Users.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/messages/messageForm/AddMessageForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messages/messageForm/AddMessageForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/usersPage/Users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/usersPage/UsersPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/usersPage/UsersPage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/usersPage/UsersPageContainer.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/types-components.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/types-components.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +25,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2Jrx5D9RPADa7AXgwmzf36p9KVP" />
   <component name="ProjectLevelVcsManager">
@@ -34,6 +40,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "js.last.introduce.type": "CONST",
     "last_opened_file_path": "D:/programming/rs-react/redux/s-media/src/api",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -77,7 +84,7 @@
       <updated>1672849821756</updated>
       <workItem from="1672849826096" duration="33484000" />
       <workItem from="1673549802475" duration="35532000" />
-      <workItem from="1674561134922" duration="13132000" />
+      <workItem from="1674561134922" duration="24287000" />
     </task>
     <servers />
   </component>

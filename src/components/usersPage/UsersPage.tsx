@@ -5,40 +5,10 @@ import Pagination from '../common/pagination/Pagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from '../../state/users-selectors';
 import { followUserThunkCreator, getUsersThunkCreator, unFollowUserThunkCreator } from '../../state/users-reducer';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
+import { UserSearchForm } from './UserSearchForm';
 
-// totalUsersCount
-// currentPage
-// pageSize
-// isFetching
-//onPageChanged
-// followingInProgress
-// followUserThunkCreator, unFollowUserThunkCreator
-
-export type UserSearchFormValues = {
-    search: string
-}
-
-const UserSearchForm: React.FC = () =>{
-    const { register, handleSubmit, reset, formState: { errors, isValid } } = useForm<UserSearchFormValues>({
-        mode: 'onChange'
-    });
-
-    const onSubmit: SubmitHandler<UserSearchFormValues> = (data ) => {
-        console.log(data);
-        reset();
-    };
-
-    return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div><input type={'search'} {...register('search')}/></div>
-            <button>Search</button>
-        </form>
-    )
-}
-
-const Users: React.FC = () => {
+const UsersPage: React.FC = () => {
 
     const users = useSelector(getUsers);
     const totalUsersCount = useSelector(getTotalUsersCount);
@@ -83,4 +53,4 @@ const Users: React.FC = () => {
         </div>);
 };
 
-export default Users;
+export default UsersPage;

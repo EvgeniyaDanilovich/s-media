@@ -160,3 +160,26 @@ export type TMapDispatchToProps = {
 }
 
 export type UsersAPIComponentProps = TMapStateToProps & TMapDispatchToProps;
+
+export type UserSearchFormValues = {
+    search: string
+}
+
+export type TAddMessageFormProps = {
+    addMessage: (message: string) => void
+}
+
+export type TMessageFormValues = {
+    message: string
+}
+
+export type TChatMessage = {
+    userId: number,
+    userName: string,
+    message: string,
+    photo: string | null
+}
+
+export type MessageProps = {
+    message: TChatMessage
+}
